@@ -28,21 +28,11 @@ document.querySelector('.check').addEventListener('click', function () {
       highScore = score;
       document.querySelector('.highscore').textContent = highScore;
     }
-    // when the number is too high
-  } else if (guess > secretNumber) {
+    // when the number is different
+  } else if (guess != secretNumber) {
+    let nbrMessage = guess > secretNumber ? 'too high!↗' : 'too low!↘';
     if (score > 1) {
-      document.querySelector('.message').textContent = 'too high!↗';
-      score--;
-      document.querySelector('.score').textContent = score;
-
-      //when the number is too low
-    } else {
-      document.querySelector('.message').textContent = 'You lost🙁 ';
-      document.querySelector('.score').textContent = 0;
-    }
-  } else {
-    if (score > 1) {
-      document.querySelector('.message').textContent = 'too low!↘';
+      document.querySelector('.message').textContent = nbrMessage;
       score--;
       document.querySelector('.score').textContent = score;
     } else {
