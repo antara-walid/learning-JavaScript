@@ -22,6 +22,7 @@ let currentScore = 0;
 let stillPlaying = true;
 const score = [0, 0];
 // functions
+//function 1 switch
 function switchPlayer() {
   // give currentScore a zero value
   currentScore = 0;
@@ -32,6 +33,7 @@ function switchPlayer() {
   player0El.classList.toggle('player--active');
   player1El.classList.toggle('player--active');
 }
+
 // rolling dice functionality
 btnRoll.addEventListener('click', function () {
   if (stillPlaying) {
@@ -77,4 +79,28 @@ btnHold.addEventListener('click', function () {
       switchPlayer();
     }
   }
+});
+
+// the reset button functionality
+btnNew.addEventListener('click', function () {
+  // set stillPlaying to true
+  stillPlaying = true;
+  // set score to zero for both players
+  for (let i = 0; i < 2; i++) {
+    score[i] = 0;
+    document.getElementById(`score--${i}`).textContent = score[i];
+  }
+  // set current score to 0 for winner/current player
+  currentScore = 0;
+  document.getElementById(`current--${activePlayer}`).textContent =
+    currentScore;
+  // remove the player winer class
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.remove('player--winner');
+  // select first player
+  activePlayer = 0;
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.add('player--active');
 });
